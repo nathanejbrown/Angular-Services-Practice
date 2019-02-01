@@ -12,7 +12,11 @@ import { AccountsService } from '../accounts.service';
 export class NewAccountComponent {
 
   //This informs Angular that it should create an instance of LoggingService
-  constructor(private loggingService: LoggingService, private accountsService: AccountsService) {}
+  constructor(private loggingService: LoggingService, private accountsService: AccountsService) {
+    this.accountsService.statusUpdated.subscribe(
+      (status: string) => alert('New Status: ' + status);
+    );
+  }
 
   onCreateAccount(accountName: string, accountStatus: string) {
     this.accountsService.addAccount(accountName, accountStatus);
